@@ -1,0 +1,26 @@
+- name: Setup Arch WSL
+  hosts: localhost
+  tasks:
+  - name: Install packages
+    community.general.pacman:
+      name:
+        - chezmoi
+    become: yes
+  - name: chezmoi init
+    ansible.builtin.command:
+      argv:
+        - chezmoi
+        - init
+        - hiterm/dotfiles-chezmoi
+  - name: chezmoi apply
+    ansible.builtin.command:
+      argv:
+        - chezmoi
+        - apply
+  - name: Install packages
+    community.general.pacman:
+      name:
+        - git
+        - fzf
+        - openssh
+    become: yes
