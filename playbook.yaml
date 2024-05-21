@@ -27,6 +27,10 @@
         - fzf
         - openssh
         - ripgrep
+        - neovim
+        - bat
+        - zoxide
+        - sheldon
     become: yes
   - name: chsh
     ansible.builtin.command:
