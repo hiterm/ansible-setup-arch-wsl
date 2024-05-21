@@ -1,5 +1,7 @@
 - name: Setup Arch WSL
   hosts: localhost
+  vars:
+    username: hiterm
   tasks:
   - name: Install packages
     community.general.pacman:
@@ -20,7 +22,17 @@
   - name: Install packages
     community.general.pacman:
       name:
+        - zsh
         - git
         - fzf
         - openssh
+        - ripgrep
+    become: yes
+  - name: chsh
+    ansible.builtin.command:
+      argv:
+        - chsh
+        - -s
+        - /usr/bin/zsh
+        - "{{ username }}"
     become: yes
